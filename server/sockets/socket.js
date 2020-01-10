@@ -17,4 +17,15 @@ io.on('connection', (client) => {
     client.emit('actualState', {
         actual: ticketControl.getLastTicket()
     });
+
+
+    client.on('attendTicket', (data, callback) => {
+        if (!data.desktop) {
+            return callback({error:true, msg: 'El escritorio es requerido'});
+        }
+
+        let attendTicket = ticketControl.attendTicket(data.desktop);
+        callback(attendTicket);
+        // update change on last four tickets
+    });
 });

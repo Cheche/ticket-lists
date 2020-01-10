@@ -19,6 +19,5 @@ socket.on('actualState', function(resp) {
 $('button').on('click', function() {
     socket.emit('nextTicket',null, function(nextTicket){
         label.text(nextTicket);
-        console.log('callback', nextTicket);
     });
 });

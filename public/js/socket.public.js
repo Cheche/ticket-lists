@@ -20,10 +20,14 @@ var lblDesktops = [ lblDesktop1,
                     lblDesktop4];
 
 socket.on('actualState', function(data) {
-    console.log(data);
     updateHTML(data.lastFour);
 });
 
+socket.on('lastFour', function(data) {
+    updateHTML(data.lastFour);
+    var audio = new Audio('audio/new-ticket.mp3');
+    audio.play();
+});
 
 function updateHTML(lastFour) {
     for (var i=0; i<= lastFour.length -1; i++) {

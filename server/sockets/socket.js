@@ -9,7 +9,6 @@ io.on('connection', (client) => {
     // Client need new ticket
     client.on('nextTicket', (data, callback) => {
         let nextTicket = ticketControl.nextTicket();
-        console.log(nextTicket);
         callback(nextTicket);
     });
 
@@ -19,7 +18,6 @@ io.on('connection', (client) => {
         lastFour: ticketControl.getLastFour()
     });
 
-
     client.on('attendTicket', (data, callback) => {
         if (!data.desktop) {
             return callback({error:true, msg: 'El escritorio es requerido'});
@@ -27,6 +25,11 @@ io.on('connection', (client) => {
 
         let attendTicket = ticketControl.attendTicket(data.desktop);
         callback(attendTicket);
+
         // update change on last four tickets
+        // Emit lastfour
+        client.broadcast.emit('lastFour',{
+            lastFour: ticketControl.getLastFour()
+        });
     });
 });

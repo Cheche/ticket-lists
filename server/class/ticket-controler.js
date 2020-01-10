@@ -4,13 +4,12 @@ const fs = require('fs');
  * Class ticket
  * Manager from individual tickets.
  * For Internal propose
- * @construct 
  */
 class Ticket {
 
     /** 
      * @construct
-     * @param number    - number of ticket
+     * @param number   - number of ticket
      * @param desktop  - number of desktop
     */
     constructor(number, desktop) {
@@ -22,10 +21,16 @@ class Ticket {
 
 /**
  * Class ticket control 
+ * 
+ * Manager for tickets progress.
  */
 
 class TicketControl {
 
+    /**
+     * Construct.
+     * Initialize ticket of the day. Check the lastest status to avoid errors
+     */
     constructor() {
 
         this.lastTicket = 0;
@@ -46,6 +51,10 @@ class TicketControl {
         }
     }
 
+    /**
+     * Reset Count.
+     * Clear data and initialize for a new work day
+     */
     resetCount() {
         this.lastTicket = 0;
         this.tickets = [];
@@ -55,6 +64,12 @@ class TicketControl {
         console.log('Reset Days and Last tiket on server');
     }
 
+    /**
+     * Next Ticket
+     * Assign a new ticket with sequential number
+     * Desktop is'nt assigned
+     * @returns string
+     */
     nextTicket() {
         this.lastTicket += 1;
 
@@ -66,14 +81,33 @@ class TicketControl {
         return `Ticket ${this.lastTicket}`;
     }
 
+
+    /**
+     * Get last Ticket
+     * Return last assigned ticket
+     * @returns string
+     */
     getLastTicket() {
         return `Ticket ${this.lastTicket}`;
     }
 
+    /**
+     * Get Last Four Assigned ticket
+     * Return last four assigned tickets.
+     * @return array of tickets
+     */
     getLastFour() {
         return this.lastFour;
     }
 
+    /**
+     * Attend Ticket
+     * Assign a pending ticket for the desk to attend to
+     * 
+     * @param {string} desktop - name of dektop for attend a ticket 
+     * @returns {string} 'No hay tickets' if the number of pending tickets is zero
+     * @returns {Ticket} Ticket object with number of ticket and desktop
+     */
     attendTicket(desktop) {
         if (this.tickets.length === 0) {
             return `No hay tickets`;
@@ -96,6 +130,10 @@ class TicketControl {
         return attendTicket;
     }
 
+    /**
+     * Save Data
+     * Save status of tickets on JSON Data
+     */
     saveData() {
         let jsonData = {
             lastTicket: this.lastTicket,

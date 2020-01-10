@@ -70,6 +70,10 @@ class TicketControl {
         return `Ticket ${this.lastTicket}`;
     }
 
+    getLastFour() {
+        return this.lastFour;
+    }
+
     attendTicket(desktop) {
         if (this.tickets.length === 0) {
             return `No hay tickets`;

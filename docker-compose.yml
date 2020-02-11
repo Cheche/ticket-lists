@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  app_node:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: development
+    command: 'npm run dev'
+    ports:
+      - '3000:3000'
+      - '9229:9229'
+    volumes:
+      - .:/srv/src
+      - node_modules:/srv/src/node_modules
+
+volumes:
+  node_modules:

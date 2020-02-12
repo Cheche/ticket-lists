@@ -4,7 +4,7 @@
     "description": "",
     "main": "server/server.js",
     "scripts": {
-        "dev": "nodemon --inspect=0.0.0.0 server/server.js",
+        "dev": "nodemon --inspect=0.0.0.0 server/server.js -e html,css,js",
         "start": "node server/server.js"
     },
     "author": "",
@@ -12,5 +12,8 @@
     "dependencies": {
         "express": "^4.16.3",
         "socket.io": "^2.0.4"
+    },
+    "devDependencies": {
+        "nodemon": "^2.0.2"
     }
 }

@@ -14,8 +14,7 @@
             "localRoot": "${workspaceFolder}",
             "remoteRoot": "/srv/src",
             "protocol": "inspector",
-            "restart": true,
-            ""
+            "restart": true
         }
     ]
 }

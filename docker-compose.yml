@@ -2,17 +2,19 @@ version: '3.7'
 
 services:
   app_node:
+    container_name: app_ticket
+    # command: 'npm run dev'
+    command: /bin/sh -c "npm install --quiet --no-optional && npm install -D --quiet --no-optional && npm run dev"
     build:
       context: .
       dockerfile: Dockerfile
       target: development
-    command: 'npm run dev'
     ports:
       - '3000:3000'
       - '9229:9229'
     volumes:
       - .:/srv/src
-      - node_modules:/srv/src/node_modules
+      # - ./node_modules:/srv/src/node_modules
 
-volumes:
-  node_modules:
+# volumes:
+#   node_modules:

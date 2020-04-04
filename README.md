@@ -30,7 +30,7 @@ npm install
 
 # Docker Notes
 
-- exec a shell on this docker: ```docker exec -it nodeTS-app sh --color=auto```
+- exec a shell on this docker: ```docker exec -it app_ticket sh --color=auto```
 
 - Install new dependencies from inside the container.
 
